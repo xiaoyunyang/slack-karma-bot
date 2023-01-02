@@ -1,4 +1,4 @@
-# Will Bot
+# Slack Karma Bot
 
 ## Quick Start
 
