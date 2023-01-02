@@ -65,6 +65,17 @@ app.event("app_home_opened", async ({ event, client, context }) => {
   }
 });
 
+app.event('app_mention', async ({ event, context, client, say }) => {
+  try {
+    if (!event.text.includes("init")) return
+    const result = await say("{}")
+    await say(`^ ts = ${result.ts}`)
+  }
+  catch (error) {
+  console.error(error);
+  }
+})
+
 app.message(/<@[A-Z0-9]*>\s*\+\+/, async ({ event, client, context, message, say }: {
   event: any, client: any, context: any, message: any, say: any
 }) => {
