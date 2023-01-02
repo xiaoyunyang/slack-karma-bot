@@ -1,0 +1,17 @@
+
+# compiled files
+dist
+
+# environment variables
+.env
+
+# node stuff
+node_modules
+
+# Logs
+yarn-error.log
+yarn-debug.log*
+
+.vscode
+.DS_Store
+*.dump
