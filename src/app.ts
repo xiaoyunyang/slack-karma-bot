@@ -2,10 +2,11 @@ import "./utils/env";
 
 import { App, LogLevel } from "@slack/bolt";
 
+import { getInitMap } from "./utils/initMap";
 import { getRandomKudos, getScoreMap, getUpdatedScoreMap, KUDOS } from"./utils/kudosGiving"
 import { getUserIdFromMention,getUserMentioned } from "./utils/userMentioned"
 
-const app = new App({
+export const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
   signingSecret: process.env.SLACK_SIGNING_SECRET,
   logLevel: LogLevel.DEBUG,
@@ -65,10 +66,14 @@ app.event("app_home_opened", async ({ event, client, context }) => {
   }
 });
 
-app.event('app_mention', async ({ event, context, client, say }) => {
+app.event("app_mention", async ({ event, context, client, say }) => {
   try {
     if (!event.text.includes("init")) return
-    const result = await say("{}")
+    const [, command] = event.text.split(" ")
+    if (command !== "init") return
+
+    const map = getInitMap(event.text)
+    const result = await say(map)
     await say(`^ ts = ${result.ts}`)
   }
   catch (error) {
@@ -122,7 +127,7 @@ app.message(/<@[A-Z0-9]*>\s*\+\+/, async ({ event, client, context, message, say
   // Start your app
 
   const port = Number(process.env.PORT) || 3000
-  console.log(`Starting app on port ${ port}`)
+  console.log(`Starting app on port ${port}`)
 
   await app.start(port);
 
