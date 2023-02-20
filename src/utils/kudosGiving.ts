@@ -11,16 +11,16 @@ export const getRandomKudos = (kudos: string[]) => {
   return kudos[idx]
 }
 
-
-export const getScoreMap = async ({ client, storeChannelId, storeTs }: { client: any, storeChannelId: string;  storeTs: number}) => {
+export const getScoreMap = async ({ token, client, storeChannelId, storeTs }: { token?: string, client: any, storeChannelId: string;  storeTs: number}) => {
   const result = await client.conversations.history({
-    token: process.env.SLACK_BOT_TOKEN,
+    token,
     channel: storeChannelId,
     latest: storeTs,
     inclusive: true,
     limit: 1
-  });
-  const conversationHistory = result.messages;
+  })
+
+  const conversationHistory = result.messages
 
   // This is an error case, this can happen when the message being referenced
   // does not exist (e.g., all the scores are kept is lost, wrong message is

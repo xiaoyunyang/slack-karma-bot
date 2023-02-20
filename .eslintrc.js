@@ -15,6 +15,7 @@ module.exports = {
   ],
   rules: {
 		// stuff that's on
+		"semi": [2, "never"],
 		"simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
     "babel/no-unused-expressions": 2,

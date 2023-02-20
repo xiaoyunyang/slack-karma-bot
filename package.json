@@ -7,10 +7,10 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "dev": "ts-node-dev src/app.ts",
+    "dev": "ts-node-dev src/index.ts",
     "build": "tsc -p .",
     "build:watch": "tsc -w -p .",
-    "start": "npm run build && node dist/app.js"
+    "start": "yarn build && node dist/index.js"
   },
   "engines": {
     "node": "14.x"
