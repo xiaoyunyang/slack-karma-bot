@@ -1,4 +1,4 @@
-import "./utils/env"
+import "../example/env"
 
 import { App as SlackBoltApp, LogLevel } from "@slack/bolt"
 
@@ -12,7 +12,8 @@ export interface AppConfig {
   scoreMapStoreChannelId?: string;
   scoreMapStoreMessageTs?: string;
 }
-export class App {
+
+export default class App {
   private app: SlackBoltApp
   private token?: string
 

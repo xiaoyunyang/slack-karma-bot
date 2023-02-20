@@ -1,29 +1,45 @@
 {
   "name": "slack-karma-bot",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Slack bot for giving kudos",
-  "main": "dist/app.js",
   "author": "Xiaoyun Yang",
   "license": "MIT",
   "private": false,
+  "keywords": [
+    "slack",
+    "bot",
+    "events-api",
+    "slash-commands",
+    "interactive-components",
+    "api",
+    "chatops",
+    "integration",
+    "slack-app"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
+  "engines": {
+    "node": ">=12.13.0",
+    "npm": ">=6.12.0"
+  },
   "scripts": {
-    "dev": "ts-node-dev src/index.ts",
+    "dev": "ts-node-dev example/index.ts",
     "build": "tsc -p .",
     "build:watch": "tsc -w -p .",
     "start": "yarn build && node dist/index.js"
   },
-  "engines": {
-    "node": "14.x"
-  },
   "dependencies": {
     "@slack/bolt": "^3.12.2",
-    "dotenv": "^16.0.3",
     "ts-node": "^10.9.1"
   },
   "devDependencies": {
     "@types/node": "^18.11.18",
     "@typescript-eslint/eslint-plugin": "^5.47.1",
     "@typescript-eslint/parser": "^5.47.1",
+    "dotenv": "^16.0.3",
     "eslint": "^8.31.0",
     "eslint-plugin-babel": "^5.3.1",
     "eslint-plugin-no-unsafe-regex": "^1.0.0",
