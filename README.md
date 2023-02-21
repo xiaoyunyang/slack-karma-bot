@@ -15,7 +15,7 @@ It's recommended that you create a private channel in your Slack workspace to st
 Create a node app that initializes the Slack Karma Bot app like such.
 
 ```js
-import { App } from '@slack-karma-bot'
+import { App } from "slack-karma-bot"
 
 const app = new App({
    token: process.env.SLACK_BOT_TOKEN,
@@ -33,6 +33,21 @@ What the environmental variables mean:
 * `SLACK_SIGNING_SECRET` is the signing secret that allows the Karma Bot App to verify that incoming requests are coming from Slack. You can retrieve from the App Credentials section of [https://api.slack.com/apps/`{APP_ID}`](https://api.slack.com/apps/{APP_ID})
 * `SCORE_MAP_STORE_CHANNEL_ID` is the private channel where you are storing the karma scores. To get the channel id, right click the channel and select "View channel details".
 * `SCORE_MAP_STORE_MESSAGE_TS` is the `ts` value of the message where the karma score map is stored. The `ts` value is essentially the ID of the message. To get the `ts` value, add the karma bot to the channel, then mention it with "init" message. The karma bot will initialize the empty score object in a new message, then provide the `ts` value of the first new message in a second new message.
+
+## Running the App
+
+The bot app wraps [bolt](https://github.com/slackapi/bolt-js) so calling the `start` method will call the `start` method in bolt.
+
+```js
+(async () => {
+  const port = Number(process.env.PORT) || 3000
+  console.log(`Starting app on port ${port}`)
+
+  await app.start(port)
+
+  console.log("⚡️ Bolt app is running!")
+})()
+```
 
 ## Datastore Initialization
 
